@@ -1,0 +1,34 @@
+@baseURL = http://localhost:9200/_nodes
+
+# Nodes info
+
+### basic
+GET {{baseURL}}
+
+### ingest
+GET {{baseURL}}/ingest
+
+### Plugins
+GET {{baseURL}}/es01/plugins
+
+# Nodes stats
+
+### Get nodes stats
+GET {{baseURL}}/stats
+
+### Get specific nodes stats
+GET {{baseURL}}/es01/stats
+
+### Get specific fields
+GET {{baseURL}}/stats/process
+
+### OS
+GET {{baseURL}}/es01/stats/os
+
+### Indices
+GET {{baseURL}}/es01/stats/indices/fielddata
+
+# Feature usage
+
+###
+GET {{baseURL}}/usage

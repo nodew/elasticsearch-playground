@@ -1,0 +1,61 @@
+@baseURL = http://localhost:9200/_cluster
+
+# Health
+
+## docs https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html
+
+### Get cluster health
+GET {{baseURL}}/health
+
+### Get specific indices health
+GET  {{baseURL}}/health/test1
+
+## Cluster health filter
+
+GET {{baseURL}}/health?timeout=50s
+
+# State
+
+## docs: https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html
+
+## request template: /_cluster/state/{metrics}/{indices}
+
+### Get cluster State
+GET {{baseURL}}/state
+
+### Cluster state filter
+
+@metrics = nodes
+@indices = foo
+GET  {{baseURL}}/state/{{metrics}}/{{indices}}
+
+#Stats
+
+### docs: https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-stats.html
+
+## Get cluster stats
+GET {{baseURL}}/stats?human&pretty
+
+### Cluster stats nodes filter
+GET {{baseURL}}/stats/nodes/_master
+
+# Pending Tasks
+
+### Get pending tasks
+GET {{baseURL}}/pending_tasks
+
+# Settings
+
+### Get settings
+GET {{baseURL}}/settings
+
+### Update settings
+PUT {{baseURL}}/settings
+Content-Type: application/json
+
+{
+    "persistent": {},
+    "transient": {
+        "indices.recovery.max_bytes_per_sec" : "20mb"
+    }
+}
