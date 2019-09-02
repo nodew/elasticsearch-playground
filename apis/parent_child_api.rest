@@ -1,0 +1,19 @@
+@baseURL = http://localhost:9200/
+
+### Has child
+
+POST {{baseURL}}/_search
+Content-Type: application/json
+
+{
+    "query": {
+        "has_child": {
+            "type" : "shares",
+            "query" : {
+                "match_all" : {}
+            },
+            "max_children": 10,
+            "min_children": 2
+        }
+    }
+}

@@ -1,1 +1,1 @@
-@baseURL = http://localhost:9200
+@baseURL = http://localhost:9200/_search

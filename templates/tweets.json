@@ -1,0 +1,69 @@
+{
+    "order": 0,
+    "template": "daily_*_tweet",
+    "settings": {
+        "number_of_shards": 2,
+        "number_of_replicas": 0,
+        "index": {
+            "refresh_interval": "30s",
+            "codec": "best_compression",
+            "mapping": {
+                "ignore_malformed": true
+            },
+            "allocation" : {
+                "max_retries" : 10
+            }
+        }
+    },
+    "mappings": {
+        "dynamic": false,
+        "_source": {
+            "includes": [
+                "user",
+                "content",
+                "images",
+                "comment",
+                "referred_links",
+                "created_at",
+                "shared_at",
+                "liked_at"
+            ]
+        },
+        "properties": {
+            "join_type": {
+                "type": "join",
+                "relations": {
+                    "tweet": [
+                        "likes",
+                        "shares",
+                        "comments"
+                    ]
+                }
+            },
+            "user": {
+                "type": "keyword"
+            },
+            "content": {
+                "type": "text"
+            },
+            "images": {
+                "type": "text"
+            },
+            "referred_links": {
+                "type": "text"
+            },
+            "comment": {
+                "type": "text"
+            },
+            "created_at": {
+                "type": "date"
+            },
+            "liked_at": {
+                "type": "date"
+            },
+            "shared_at": {
+                "type": "date"
+            }
+        }
+    }
+}
